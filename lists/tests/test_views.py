@@ -1,8 +1,6 @@
 from django.core.urlresolvers import resolve
 from django.test import TestCase
-from django.http import HttpRequest
-from django.template.loader import render_to_string
-
+from django.utils.html import escape
 from lists.models import Item,List
 from lists.views import home_page
 
@@ -41,6 +39,13 @@ class NewListTest(TestCase):
                 data={'item_text':'A new item for an existing list'}
             )
             self.assertRedirects(response,'/lists/%d/'%(correct_list.id))
+
+        def test_validation_errors_are_sent_back_to_home_page_template(self):
+            response=self.client.post('/lists/new',data={'item_text':''})
+            self.assertEqual(response.status_code,200)
+            self.assertTemplateUsed(response,'home.html')
+            expected_error=escape("You can't have an empty list item")
+            self.assertContains(response,expected_error)
 
 
 class NewItemTest(TestCase):
@@ -98,5 +103,4 @@ class ListViewTest(TestCase):
         correct_list=List.objects.create()
         response=self.client.post('/lists/%d/'%(correct_list.id))
         self.assertEqual(response.context['list'],correct_list)
-
 

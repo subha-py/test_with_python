@@ -6,6 +6,6 @@ class List(models.Model):
     pass
 
 class Item(models.Model):
-    text=models.CharField(max_length=120)
+    text=models.CharField(max_length=120,blank=False)
     list=models.ForeignKey(List,default=None)
 
