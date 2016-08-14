@@ -41,14 +41,12 @@ class NewVisitorTest(FunctionalTest):
         inputbox.send_keys(Keys.ENTER)
         #The page updates again, and now shows both items on her list
         self.check_for_row_in_list_table('1: Buy peacock feathers')
-        time.sleep(2)
         self.check_for_row_in_list_table('2: Use peacock feathers to make a fly')
         #Now a new user, Francis, comes along to the site.
 
         #We use a new browser session to make sure that no information
         ##of Edith's is coming through from cookies etc
         self.browser.quit()
-        time.sleep(2)
         self.browser=webdriver.Firefox()
         self.browser.get(self.server_url)
         #Francis starts a new list by enteriing a new iitem. He
@@ -56,7 +54,6 @@ class NewVisitorTest(FunctionalTest):
 
         inputbox=self.browser.find_element_by_id('id_new_item')
         inputbox.send_keys('Buy milk')
-        time.sleep(1)
         inputbox.send_keys(Keys.ENTER)
 
         #francis gets his own unique URL
