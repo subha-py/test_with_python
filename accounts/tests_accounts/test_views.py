@@ -29,7 +29,7 @@ class SendLoginEmailViewTest(TestCase):
         message=list(response.context['messages'])[0]
         self.assertEqual(
             message.message,
-            "Check your email, we've sent you a link you can use to log in."
+            "Check your email, we have sent you a link you can use to log in."
         )
         self.assertEqual(message.tags,'success')
 
