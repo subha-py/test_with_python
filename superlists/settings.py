@@ -111,10 +111,10 @@ STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '../static'))
 
 
 #email settings
-EMAIL_HOST='smtp.gmail.com'
-EMAIL_HOST_USER='subha.py@gmail.com'
+EMAIL_HOST='smtp.mailgun.org'
+EMAIL_HOST_USER='postmaster@subhabera.cloudns.cc'
 EMAIL_PORT=587
-EMAIL_HOST_PASSWORD=os.environ.get('EMAIL_PASSWORD')
+EMAIL_HOST_PASSWORD='Amitavanag!1'
 EMAIL_USE_TLS=True
 
 LOGGING = {
